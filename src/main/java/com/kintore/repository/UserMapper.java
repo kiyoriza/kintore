@@ -1,11 +1,18 @@
 package com.kintore.repository;
 
+import java.util.Optional;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+
+import com.kintore.entity.UserEntity;
 
 @Mapper
 public interface UserMapper {
-    @Select("SELECT name FROM user WHERE id = #{id}")
-    String findByState(@Param("id") int id);
+    /**
+     * Finds user information based on the provided username.
+     * @param userName username
+     * @return an Optional containing the UserEntity if found, or an empty Optional if not found.
+     */
+    public Optional<UserEntity> findByUsername(@Param("userName") String userName);
 }
